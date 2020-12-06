@@ -4,8 +4,12 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+var cors = require('cors');
+
+// 配置业务接口
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var menuRouter = require('./routes/menu');
 
 var app = express();
 
@@ -21,6 +25,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/getMenu', menuRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -38,4 +43,10 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+// 设置跨域访问
+app.use(cors({
+  origin: ['http://localhost:8080'],
+  methods: ['GET', 'POST'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}))
 module.exports = app;
