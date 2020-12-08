@@ -4,7 +4,12 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+// 引入数据库链接；可以是任意数据库
+var mongondb = require('./utils/mongodb');
+
+// 使用 Cors 解决跨域
 var cors = require('cors');
+
 // 配置业务接口
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -48,14 +53,4 @@ app.use(cors({
   methods: ['GET', 'POST'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }))
-app.all('*', function (req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', 'Content-Type, Content-Length, Authorization, Accept, X-Requested-With, Current-Page');
-  res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
-  if (req.method == 'OPTIONS') {
-    res.sendStatus(200);
-  } else {
-    next();
-  }
-});
 module.exports = app;
