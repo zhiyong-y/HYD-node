@@ -1,6 +1,6 @@
 // 用于连接mongodb
 let mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/list', { useNewUrlParser: true, useUnifiedTopology: true }, (err, client) => {}) //连接到mongoDB
+mongoose.connect('mongodb://localhost:27017/HYD', { useNewUrlParser: true, useUnifiedTopology: true }, (err, client) => {}) //连接到mongoDB
 //该地址格式：mongodb://[username:password@]host:port/database[?options]
 //默认port为27017 
 
