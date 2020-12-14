@@ -1,9 +1,8 @@
 var express = require('express');
-const { Db } = require('mongodb');
 var router = express.Router();
 
 /* GET home page. */
-router.get('/', function (req, res, next) {
+router.post('/', function (req, res, next) {
   var data = {
     result: 1,
     data: [
