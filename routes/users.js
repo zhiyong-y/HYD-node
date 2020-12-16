@@ -6,7 +6,6 @@ let User = require('../models/user');
 
 router.get('/lists', function (req, res, next) {
   User.find(function (err, doc) {
-    console.log(doc)
     if (err) {
       res.json({
         status: '1',
