@@ -40,17 +40,17 @@ router.post('/', function (req, res, next) {
     result.forEach(item => {
       querySubMenu(item.rightCode).then(sub => {
         item.subMenu = sub;
-        res.json({
-          status: '0',
-          msg: '',
-          result: {
-            count: result.length,
-            list: result
-          }
-        })
       }).catch(error => {
-        console.error("query submenu error");
+        console.log(error);
       })
+    });
+    res.json({
+      status: '0',
+      msg: '',
+      result: {
+        count: result.length,
+        list: result
+      }
     })
   }).catch(error => {
     res.json({
