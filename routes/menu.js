@@ -37,21 +37,24 @@ router.post('/', function (req, res, next) {
     console.log(params);
   });
   queryMenu(req, res, next).then(result => {
-    result.forEach(item => {
+     result.forEach(item => {
       querySubMenu(item.rightCode).then(sub => {
         item.subMenu = sub;
       }).catch(error => {
         console.log(error);
       })
     });
-    res.json({
-      status: '0',
-      msg: '',
-      result: {
-        count: result.length,
-        list: result
-      }
-    })
+    setTimeout(() => {
+      // ?????这块不知道咋解决
+      res.json({
+        status: '0',
+        msg: '',
+        result: {
+          count: result.length,
+          list: result
+        }
+      })
+    }, 300);
   }).catch(error => {
     res.json({
       status: '1',
