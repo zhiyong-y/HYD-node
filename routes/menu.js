@@ -12,7 +12,8 @@ const queryMenu = (req, res, next) => {
       } else {
         resolve(doc);
       }
-    });
+    }).sort({orderNo: 1}); 
+    // 根据字段排序；1为正序，-1为倒序
   })
 }
 const querySubMenu = (upperRightCode) => {
